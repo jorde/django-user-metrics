@@ -3,6 +3,7 @@ from django.core.management.base import NoArgsCommand
 from django.contrib.auth.models import User
 
 from user_metrics.models import Metric, MetricItem
+from user_metrics.api import put_metric
 
 class Command(NoArgsCommand):
     help = "Collect user signups until today"
@@ -12,14 +13,10 @@ class Command(NoArgsCommand):
     def handle_noargs(self, **options):
         """ Collect new user signups """
 
-        # Get Metric for this type
-        metric, created = Metric.objects.get_or_create(slug='user-signup', name="User Signup")
-        
-        # Save new user sign up data points
         users = User.objects.filter()
         for user in users:
-            MetricItem(
-                metric = metric,
-                user = user,
-            ).save()
+            put_metric(
+                'user-signup',
+                user,
+            )
 
