@@ -1,6 +1,6 @@
 from user_metrics.models import Metric, MetricItem
 
-def put_metric(slug, user=None, count=1, **kwargs):
+def put_metric(slug, user=None, date_up=None, count=1, **kwargs):
     """ Increment a metric by a given user """
 
     try:
@@ -11,5 +11,6 @@ def put_metric(slug, user=None, count=1, **kwargs):
     MetricItem.objects.create(
         metric = metric,
         user = user,
+        date_up = date_up,
         count = count
     )
