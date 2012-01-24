@@ -17,6 +17,6 @@ class Command(NoArgsCommand):
         for user in users:
             put_metric(
                 'user-signup',
-                user,
+                date_up=user.date_joined,
             )
 
