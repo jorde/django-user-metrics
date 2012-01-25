@@ -48,3 +48,15 @@ class MetricWeek(models.Model):
     
     def __unicode__(self):
         return '%s' % self.count
+
+class MetricMonth(models.Model):
+    """ represent aggregation of metric weekly
+    """
+    metric = models.ForeignKey(Metric)
+    user = models.ForeignKey(User, null=True, blank=True)
+
+    count = models.IntegerField(default=0)
+    date_up = models.DateField(default=date.today)
+    
+    def __unicode__(self):
+        return '%s' % self.count
