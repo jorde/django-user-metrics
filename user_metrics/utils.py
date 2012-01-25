@@ -5,6 +5,8 @@ from user_metrics.models import MetricWeek
 def week_for_date(date):
     return date - datetime.timedelta(days=date.weekday())
 
+def month_for_date(date):
+    return datetime.date(year=date.year, month=date.month, day=1)
 
 def total_weeks_aggregated():
     """
