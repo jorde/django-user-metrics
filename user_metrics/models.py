@@ -61,6 +61,13 @@ class MetricMonth(models.Model):
     def __unicode__(self):
         return '%s' % self.count
 
+
+class MetricKey(models.Model):
+    metric = models.ForeignKey(Metric)
+    key = models.CharField(max_length=255)
+    
+    value = models.FloatField(null=True, blank=True)
+
 # Cohorts
 
 class Cohort(models.Model):
